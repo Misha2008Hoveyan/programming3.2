@@ -69,8 +69,8 @@ function setup() {
                 grassEaterArr.push(grE)
             }
             else if (matrix[y][x] == 3) {
-                let pred = new Predator(x, y)
-                PredatorArr.push(pred)
+                let red = new Predator(x, y)
+                PredatorArr.push(red)
             }
             else if (matrix[y][x] == 4) {
                 let sp = new GrassSpavn(x, y)
