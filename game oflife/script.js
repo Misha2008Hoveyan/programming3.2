@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat, pred, grP,sp) {
+function generator(matLen, gr, grEat, pred, grP,sp,prs) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -42,18 +42,29 @@ function generator(matLen, gr, grEat, pred, grP,sp) {
             matrix[x][y] = 5;
         }
     }
+    for (let i = 0; i < sp; i++) {
+        let x = Math.floor(Math.random() * matLen);
+        let y = Math.floor(Math.random() * matLen);
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 6;
+        }
+    }
     return matrix;
 }
 
 let side = 20;
 
-let matrix = generator(30, 100, 80, 40, 10,5);
+let matrix = generator(30, 100, 80, 40, 10,5,6);
 
 let grassArr = []
 let grassEaterArr = []
 let PredatorArr = []
 let grassSpavnArr = []
 let GrassEaterSpavnArr = []
+let predatorspavnarr = []
+
+
+
 
 function setup() {
     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -80,6 +91,10 @@ function setup() {
                 let sp = new GrassEaterSpavn(x, y)
                 GrassEaterSpavnArr.push(sp)
             }
+            else if (matrix[y][x] == 6) {
+                let sp = new predatorspavnarr(x, y)
+                predatorspavnarr.push(sp)
+            }
         }
     }
 }
@@ -100,6 +115,9 @@ function draw() {
             }
             else if (matrix[y][x] == 5) {
                 fill('blue')
+            }
+            else if (matrix[y][x] == 6) {
+                fill('#a000f0')
             }
             rect(x * side, y * side, side, side)
         }
@@ -127,4 +145,10 @@ function draw() {
             GrassEaterSpavnArr[i].mul()
         }
     }
+    for (let i in  predatorspavnarr) {
+        predatorspavnarr[i].move()
+        if(predatorspavnarr.length < 20) {
+            predatorspavnarr[i].mul()
+        }
+    }  
 }
