@@ -92,8 +92,8 @@ function setup() {
                 GrassEaterSpavnArr.push(sp)
             }
             else if (matrix[y][x] == 6) {
-                let bomb = new bomb (x, y)
-                bombarr.push(bomb)
+                let sp = new bomb (x, y)
+                bombarr.push(sp)
             }
         }
     }
